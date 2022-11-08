@@ -31,8 +31,8 @@ model Participant {
   poolId String?
 
   guesses Guess[]
-  Pool    Pool?   @relation(fields: [poolId], references: [id])
-  User    User    @relation(fields: [userId], references: [id])
+  pool    Pool?   @relation(fields: [poolId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
 
   @@unique([userId, poolId])
 }
@@ -70,4 +70,6 @@ model Guess {
 
   participant Participant @relation(fields: [participantId], references: [id])
   game        Game        @relation(fields: [gameId], references: [id])
+
+  @@unique([participantId, gameId])
 }
